@@ -18,7 +18,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
         if (err) {
           console.log(err);
         } else {
-          console.log(data);
+          console.log(JSON.parse(data));
         }
       });
     });
