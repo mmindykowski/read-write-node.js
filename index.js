@@ -15,6 +15,10 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
 
     fs.mkdir(path.join(__dirname, "user"), function (err) {
       if (err) {
+        if (err.code === "EEXIST") {
+          console.log("Folder już istnieje");
+          return;
+        }
         console.log(err);
       } else {
         console.log("Stworzono folder");
