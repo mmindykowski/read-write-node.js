@@ -20,6 +20,19 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
         console.log("Stworzono folder");
       }
     });
+
+    fs.writeFile(
+      path.join(__dirname, "user", "result.txt"),
+      "test",
+      function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Stworzono plik");
+        }
+      }
+    );
+
     // files.forEach(function (file) {
     //   fs.readFile(path.join(__dirname, "data", file), 'utf-8', function (err, data) {
     //     if (err) {
