@@ -43,15 +43,23 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
             // let parseData = JSON.parse(data);
 
             for (let i = 0; i < data.length; i++) {
-              let firstname = JSON.parse(data)[i].name;
-              let surname = JSON.parse(data)[i].username;
+              let fnameAndSurname = JSON.parse(data)[i].name;
+              // let username = JSON.parse(data)[i].username;
               let id = JSON.parse(data)[i].id;
               let address = JSON.parse(data)[i].address.street;
               let zipcode = JSON.parse(data)[i].address.zipcode;
               let city = JSON.parse(data)[i].address.city;
               let phone = JSON.parse(data)[i].phone;
 
-              const content = `Name: ${firstname}\n Surname: ${surname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
+              const myArray = fnameAndSurname.split(" ");
+
+              let lastname = myArray[1];
+              let fname = myArray[0];
+
+              // let fname = fnameAndSurname.split("");
+              // let lastname = fnameAndSurname.split(" ,");
+
+              const content = `Name: ${fname}\n Surname: ${lastname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
 
               console.log(content);
 
@@ -59,7 +67,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
                 path.join(
                   __dirname,
                   "users",
-                  id + "-" + firstname + "-" + surname + "-" + ".txt"
+                  id + "-" + fname + "-" + lastname + "-" + ".txt"
                 ),
                 content,
                 function (err) {
