@@ -56,10 +56,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
               let lastname = myArray[1];
               let fname = myArray[0];
 
-              // let fname = fnameAndSurname.split("");
-              // let lastname = fnameAndSurname.split(" ,");
-
-              const content = `Name: ${fname}\n Surname: ${lastname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
+              const content = `\n Name: ${fname}\n Surname: ${lastname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
 
               console.log(content);
 
