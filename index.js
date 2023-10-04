@@ -59,7 +59,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
                 path.join(
                   __dirname,
                   "users",
-                  id + "-" + fname + "-" + lastname + "-" + ".txt"
+                  id + "-" + fname + "-" + lastname + ".txt"
                 ),
                 content,
                 function (err) {
