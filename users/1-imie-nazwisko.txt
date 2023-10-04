@@ -1,1 +1,0 @@
-name surname street zip code city phone

@@ -5,6 +5,10 @@ const fs = require("fs");
 // ścieżki do plików
 const path = require("path");
 
+// const user = require('./data/2-read-write-users.json')
+
+// console.log(user);
+
 // metoda readdir
 
 fs.readdir(path.join(__dirname, "data"), function (err, files) {
@@ -25,6 +29,19 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
       }
     });
 
+    // fs.readFile(
+    //   "./data/2-read-write-users.json",
+    //   "utf-8",
+    //   (err, jsonString) => {
+    //     if (err) {
+    //       console.log(err);
+    //     } else {
+    //       const data = JSON.parse(jsonString);
+    //       console.log(data);
+    //     }
+    //   }
+    // );
+
     files.forEach(function (file, index) {
       fs.readFile(
         path.join(__dirname, "data", file),
@@ -33,24 +50,35 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
           if (err) {
             console.log(err);
           } else {
-            console.log(JSON.parse(data));
-          }
+            // console.log(JSON.parse(data)[0].name);
+            // console.log(JSON.parse(data));
 
-          fs.writeFile(
-            path.join(
-              __dirname,
-              "users",
-              index + 1 + "-imie-nazwisko" + ".txt"
-            ),
-            "name surname street zip code city phone",
-            function (err) {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log("Stworzono plik");
-              }
+            let parseData = JSON.parse(data);
+            // petla?
+            for (let i = 0; i < parseData.length; i++) {
+              let username = data[i].name;
+              // username.split() oddzielic -
+              console.log(username);
+              let content = `Name: ${username}\n Surname: ${data[i].username}`;
+              // console.log(content);
+              fs.writeFile(
+                path.join(
+                  __dirname,
+                  "users",
+                  index + 1 + username + "-nazwisko" + ".txt"
+                ),
+                content,
+                // "name surname street zip code city phone"
+                function (err) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    // console.log("Stworzono plik");
+                  }
+                }
+              );
             }
-          );
+          }
         }
       );
     });
