@@ -29,19 +29,6 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
       }
     });
 
-    // fs.readFile(
-    //   "./data/2-read-write-users.json",
-    //   "utf-8",
-    //   (err, jsonString) => {
-    //     if (err) {
-    //       console.log(err);
-    //     } else {
-    //       const data = JSON.parse(jsonString);
-    //       console.log(data);
-    //     }
-    //   }
-    // );
-
     files.forEach(function (file, index) {
       fs.readFile(
         path.join(__dirname, "data", file),
@@ -64,15 +51,15 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
               let city = JSON.parse(data)[i].address.city;
               let phone = JSON.parse(data)[i].phone;
 
-              // username.split() oddzielic -
-              // console.log(username);
-              let content = `Name: ${firstname}\n Surname: ${surname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
+              const content = `Name: ${firstname}\n Surname: ${surname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
+              
               console.log(content);
+
               fs.writeFile(
                 path.join(
                   __dirname,
                   "users",
-                  id + firstname + surname + ".txt"
+                  id + "-" + firstname + "-" + surname + "-" + ".txt"
                 ),
                 content,
                 function (err) {
