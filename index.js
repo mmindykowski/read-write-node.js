@@ -53,22 +53,28 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
             // console.log(JSON.parse(data)[0].name);
             // console.log(JSON.parse(data));
 
-            let parseData = JSON.parse(data);
-            // petla?
-            for (let i = 0; i < parseData.length; i++) {
-              let username = data[i].name;
+            // let parseData = JSON.parse(data);
+
+            for (let i = 0; i < data.length; i++) {
+              let firstname = JSON.parse(data)[i].name;
+              let surname = JSON.parse(data)[i].username;
+              let id = JSON.parse(data)[i].id;
+              let address = JSON.parse(data)[i].address.street;
+              let zipcode = JSON.parse(data)[i].address.zipcode;
+              let city = JSON.parse(data)[i].address.city;
+              let phone = JSON.parse(data)[i].phone;
+
               // username.split() oddzielic -
-              console.log(username);
-              let content = `Name: ${username}\n Surname: ${data[i].username}`;
-              // console.log(content);
+              // console.log(username);
+              let content = `Name: ${firstname}\n Surname: ${surname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
+              console.log(content);
               fs.writeFile(
                 path.join(
                   __dirname,
                   "users",
-                  index + 1 + username + "-nazwisko" + ".txt"
+                  id + firstname + surname + ".txt"
                 ),
                 content,
-                // "name surname street zip code city phone"
                 function (err) {
                   if (err) {
                     console.log(err);
