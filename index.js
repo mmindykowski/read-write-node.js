@@ -52,10 +52,10 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
               let phone = JSON.parse(data)[i].phone;
 
               const content = `Name: ${firstname}\n Surname: ${surname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
-              
+
               console.log(content);
 
-              fs.writeFile(
+              fs.writeFileSync(
                 path.join(
                   __dirname,
                   "users",
@@ -66,7 +66,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
                   if (err) {
                     console.log(err);
                   } else {
-                    // console.log("Stworzono plik");
+                    console.log("Stworzono plik");
                   }
                 }
               );
