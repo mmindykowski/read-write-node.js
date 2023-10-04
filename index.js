@@ -37,14 +37,9 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
           if (err) {
             console.log(err);
           } else {
-            // console.log(JSON.parse(data)[0].name);
-            // console.log(JSON.parse(data));
-
-            // let parseData = JSON.parse(data);
-
             for (let i = 0; i < data.length; i++) {
               let fnameAndSurname = JSON.parse(data)[i].name;
-              // let username = JSON.parse(data)[i].username;
+
               let id = JSON.parse(data)[i].id;
               let address = JSON.parse(data)[i].address.street;
               let zipcode = JSON.parse(data)[i].address.zipcode;
