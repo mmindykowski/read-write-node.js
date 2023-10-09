@@ -37,19 +37,30 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
           if (err) {
             console.log(err);
           } else {
-            for (let i = 0; i < data.length; i++) {
-              let fnameAndSurname = JSON.parse(data)[i].name;
+            let parseData = JSON.parse(data);
 
-              let id = JSON.parse(data)[i].id;
-              let address = JSON.parse(data)[i].address.street;
-              let zipcode = JSON.parse(data)[i].address.zipcode;
-              let city = JSON.parse(data)[i].address.city;
-              let phone = JSON.parse(data)[i].phone;
+            for (let i = 0; i < parseData.length; i++) {
+              let fnameAndSurname = parseData[i].name;
+
+              let id = parseData[i].id;
+              let address = parseData[i].address.street;
+              let zipcode = parseData[i].address.zipcode;
+              let city = parseData[i].address.city;
+              let phone = parseData[i].phone;
 
               const myArray = fnameAndSurname.split(" ");
+              console.log(myArray);
 
-              let lastname = myArray[1];
-              let fname = myArray[0];
+              let lastname;
+              let fname;
+
+              if (myArray[0] === "Mrs." || myArray === "Mr.") {
+                lastname = myArray[2];
+                fname = myArray[0] + myArray[1];
+              } else {
+                lastname = myArray[1];
+                fname = myArray[0];
+              }
 
               const content = `\n Name: ${fname}\n Surname: ${lastname}\n Address: ${address}\n Zip Code: ${zipcode}\n City: ${city}\n Phone: ${phone}`;
 
